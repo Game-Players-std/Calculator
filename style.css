@@ -1,0 +1,363 @@
+:root {
+    --bg-color: #0f172a;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --accent: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.5);
+    --operator-bg: #f59e0b;
+    --key-bg: rgba(255, 255, 255, 0.05);
+    --key-hover: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+
+.background-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+
+
+.blob {
+    position: absolute;
+    filter: blur(80px);
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.blob-1 {
+    top: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: #4f46e5;
+    animation: blobFloat 20s infinite alternate;
+}
+
+.blob-2 {
+    bottom: -10%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: #ec4899;
+    animation: blobFloat 25s infinite alternate-reverse;
+}
+
+.blob-3 {
+    top: 40%;
+    left: 40%;
+    width: 300px;
+    height: 300px;
+    background: #06b6d4;
+    animation: blobFloat 22s infinite alternate;
+}
+
+@keyframes blobFloat {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(30px, 50px);
+    }
+}
+
+
+.app-container {
+    width: 100%;
+    max-width: 400px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    overflow: visible;
+    position: relative;
+    z-index: 10;
+}
+
+
+.tabs {
+    display: flex;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 16px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-btn.active {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom-color: var(--accent);
+}
+
+.content {
+    padding: 24px;
+}
+
+.panel {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.display-container {
+    margin-bottom: 20px;
+    text-align: right;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+}
+
+.display-history {
+    height: 20px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.display-current {
+    font-size: 2.5rem;
+    font-weight: 600;
+    word-break: break-all;
+}
+
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.btn {
+    padding: 16px 8px;
+    border-radius: 12px;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    background: var(--key-bg);
+    color: var(--text-primary);
+    transition: all 0.2s;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn:hover {
+    background: var(--key-hover);
+}
+
+.btn.operator {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.btn.sci {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    background: transparent;
+}
+
+.btn.equal {
+    background: var(--accent);
+    color: #000;
+    grid-column: span 1;
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.btn.clear,
+.btn.delete {
+    color: #ef4444;
+}
+
+
+.converter-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.converter-tabs::-webkit-scrollbar {
+    height: 4px;
+}
+
+.converter-tabs::-webkit-scrollbar-thumb {
+    background: var(--glass-border);
+    border-radius: 4px;
+}
+
+.conv-tab {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+
+.conv-tab.active {
+    background: var(--accent);
+    color: #09090b;
+    border-color: var(--accent);
+}
+
+.converter-body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.input-group {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    outline: none;
+}
+
+.input-group select {
+    width: 100%;
+    background: var(--bg-color);
+    color: var(--text-primary);
+    padding: 8px;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    outline: none;
+}
+
+.icon-swap {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--accent);
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.icon-swap:hover {
+    transform: rotate(180deg);
+}
+
+
+@media (max-width: 480px) {
+    body {
+        padding: 0;
+        align-items: flex-start;
+    }
+
+    .app-container {
+        max-width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        border-radius: 0;
+        border: none;
+    }
+
+    .keypad {
+        gap: 8px;
+    }
+
+    .btn {
+        padding: 14px 4px;
+        font-size: 1.1rem;
+    }
+
+    .display-current {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-height: 700px) {
+    .btn {
+        padding: 10px 4px;
+        font-size: 1rem;
+    }
+
+    .content {
+        padding: 16px;
+    }
+
+    .display-container {
+        padding: 8px;
+        margin-bottom: 12px;
+    }
+
+    .display-current {
+        font-size: 2rem;
+    }
+}

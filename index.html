@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SciCalc & Converter</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <div class="app-container">
+        <nav class="tabs">
+            <button class="tab-btn active" data-target="calculator">Calculator</button>
+            <button class="tab-btn" data-target="converter">Converter</button>
+        </nav>
+
+        <main class="content">
+           
+            
+            <section id="calculator" class="panel active">
+                <div class="display-container">
+                    <div class="display-history" id="calc-history"></div>
+                    <div class="display-current" id="calc-display">0</div>
+                </div>
+                <div class="keypad">
+                    
+                    
+                    <button class="btn sci" data-action="sin">sin</button>
+                    <button class="btn sci" data-action="cos">cos</button>
+                    <button class="btn sci" data-action="tan">tan</button>
+                    <button class="btn sci" data-action="log">log</button>
+                    
+                    
+
+                    <button class="btn sci" data-action="ln">ln</button>
+                    <button class="btn sci" data-action="sqrt">√</button>
+                    <button class="btn sci" data-action="pow">x^y</button>
+                    <button class="btn sci" data-action="pi">π</button>
+                    
+                    
+                    
+                    <button class="btn clear" data-action="clear">AC</button>
+                    <button class="btn delete" data-action="delete">DEL</button>
+                    <button class="btn operator" data-action="%">%</button>
+                    <button class="btn operator" data-action="/">÷</button>
+
+                    <button class="btn num" data-value="7">7</button>
+                    <button class="btn num" data-value="8">8</button>
+                    <button class="btn num" data-value="9">9</button>
+                    <button class="btn operator" data-action="*">×</button>
+
+                    <button class="btn num" data-value="4">4</button>
+                    <button class="btn num" data-value="5">5</button>
+                    <button class="btn num" data-value="6">6</button>
+                    <button class="btn operator" data-action="-">-</button>
+
+                    <button class="btn num" data-value="1">1</button>
+                    <button class="btn num" data-value="2">2</button>
+                    <button class="btn num" data-value="3">3</button>
+                    <button class="btn operator" data-action="+">+</button>
+
+                    <button class="btn num" data-value="00">00</button>
+                    <button class="btn num" data-value="0">0</button>
+                    <button class="btn num" data-value=".">.</button>
+                    <button class="btn equal" data-action="equal">=</button>
+                </div>
+            </section>
+
+            <!--THE CONVERTER-->
+            <section id="converter" class="panel">
+                <div class="converter-tabs">
+                    <button class="conv-tab active" data-type="length">Length</button>
+                    <button class="conv-tab" data-type="mass">Mass</button>
+                    <button class="conv-tab" data-type="temperature">Temp</button>
+                    <button class="conv-tab" data-type="time">Time</button>
+                </div>
+
+                <div class="converter-body">
+                    <div class="input-group">
+                        <label>From</label>
+                        <input type="number" id="conv-input" placeholder="0">
+                        <select id="unit-from"></select>
+                    </div>
+                    <div class="icon-swap">⇅</div>
+                    <div class="input-group">
+                        <label>To</label>
+                        <input type="number" id="conv-output" readonly placeholder="0">
+                        <select id="unit-to"></select>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
